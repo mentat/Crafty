@@ -1,5 +1,7 @@
 CXXFLAGS = -DDEBUG -g -pipe -ansi -Wall
 
+all: crafty
+
 NLog.o: NLog.cpp NLog.h
 	${CXX} ${CXXFLAGS} -c NLog.cpp  `wx-config --cxxflags`
 
@@ -27,10 +29,8 @@ craft_wdr.o: craft_wdr.cpp craft_wdr.h
 craft.o: craft.cpp craft.h hex_edit.h craft_wdr.h
 	$(CXX) ${CXXFLAGS} -c craft.cpp `wx-config --cxxflags`
 
-crafty : rawsocket.o craft.o packet.o NLog.o tcp_packet.o ipv4_packet.o craft_wdr.o hex_edit.o
-	${CXX} ${CXXFLAGS} -o crafty NLog.o rawsocket.o craft.o craft_wdr.o hex_edit.o packet.o tcp_packet.o ipv4_packet.o -lnet `wx-config --libs`
-
-all: crafty
+crafty : craft.o packet.o NLog.o tcp_packet.o ipv4_packet.o craft_wdr.o hex_edit.o
+	${CXX} ${CXXFLAGS} -o crafty NLog.o craft.o craft_wdr.o hex_edit.o packet.o tcp_packet.o ipv4_packet.o -lnet `wx-config --libs`
 
 clean :
 	rm -rf *.o crafty

@@ -1,6 +1,6 @@
 // --*-c++-*--
 /*
-    $Id: craft.cpp,v 1.1 2004/01/05 21:59:04 thementat Exp $
+    $Id: craft.cpp,v 1.2 2004/01/08 04:09:45 thementat Exp $
  
     Crafty Packet Crafter
     Copyright (C) 2003  Jesse Lovelace <jllovela@ncsu.edu>
@@ -257,7 +257,7 @@ void MainFrame::OnSendPacket(wxCommandEvent& event)
 {
   
     ByteBuffer packet = m_packet.Craft();
-    
+    /*
     RawSocket * sock = new RawSocket();
     
     if (!sock->IsOK())
@@ -269,7 +269,7 @@ void MainFrame::OnSendPacket(wxCommandEvent& event)
     }
    
     delete sock;
-    
+    */
     wxLogBug(wxT("OnSendPacket"));
   
 }
